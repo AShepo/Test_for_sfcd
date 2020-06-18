@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "gulp-sass": "^4.0.2",
+    "imagemin": "^7.0.1",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1"
   },
@@ -15,6 +16,7 @@
     "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
     "gulp-uglify": "^3.0.2"
   },
   "scripts": {

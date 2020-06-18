@@ -5,6 +5,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const del = require('del');
+const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
 const cssFiles = [
@@ -43,13 +44,21 @@ function scripts(){
         .pipe(browserSync.stream());
 }
 
+function img(){
+    return gulp.src('./src/img/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./build/img'))
+}
+
 
 function watch(){
     browserSync.init({
         server: {
             baseDir: "./"
-        }
+        },
        // tunnel: true
+       browser: "chrome",
+       notify: false
     });
 
     gulp.watch('./src/scss/**/*.scss', styles);
@@ -64,9 +73,10 @@ function clean (){
 
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
-gulp.task('watch', watch);
+gulp.task('img', img);
+gulp.task('watch', watch)
 
-gulp.task('build', gulp.series(clean, 
-                    gulp.parallel(styles, scripts)));
+gulp.task('build', gulp.series(clean,
+                    gulp.parallel(styles, scripts, img)));
 
 gulp.task('dev', gulp.series('build', 'watch'));
