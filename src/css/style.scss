@@ -1,0 +1,12 @@
+$bgColor: rgb(50, 199, 13);
+
+@mixin container () {
+    padding: 100px 20px;
+}
+
+div {
+    @include container ();
+    p {
+        background-color: $bgColor;
+    }
+}
