@@ -9,8 +9,8 @@ const browserSync = require('browser-sync').create();
 
 const cssFiles = [
     './node_modules/normalize.css/normalize.css',
-    './src/css/style.css',
-    './src/css/style.scss'
+    './src/scss/style.scss',
+    './src/scss/media.scss'
 ]
 
 const jsFiles = [
@@ -52,7 +52,7 @@ function watch(){
        // tunnel: true
     });
 
-    gulp.watch('./src/css/**/*.scss', styles);
+    gulp.watch('./src/scss/**/*.scss', styles);
     gulp.watch('./src/js/**/*.js', scripts);
     gulp.watch('./*.html', browserSync.reload);
 

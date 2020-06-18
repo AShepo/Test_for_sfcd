@@ -1,1 +1,1 @@
-console.log(4/2);
+document.addEventListener("DOMContentLoaded",function(n){});
