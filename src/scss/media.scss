@@ -1,5 +1,21 @@
-@media (min-width:800px) {
-    div {
-        padding:0;
+@media (max-width:750px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+        "a"
+        "b"
+        "c";
+    }
+    .header-inner {
+        padding: 0;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+    .nav, .profile {
+        display: none;
+    }
+    .logo {
+        margin: auto;
     }
 }

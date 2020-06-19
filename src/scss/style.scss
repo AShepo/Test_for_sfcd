@@ -16,9 +16,18 @@ body {
     color: $mainColor;
 }
 
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
 a {
     text-decoration: none;
     display: block;
+}
+
+p {
+    margin: 0;
 }
 
 .container {
@@ -54,4 +63,316 @@ a {
             }
         }
     }
+}
+
+$space-m: 16px;
+
+.mobile-menu {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 $space-m;
+  height: 50px;
+  z-index: 9999999;
+  
+  &__btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    transition: .4s;
+    z-index: 999999;
+  }
+  
+  &__icon {
+    display: block;
+    position: relative;
+    background: #6F36BC;
+    width: 90%;
+    height: 4px;
+    transition: .4s;
+
+    &::after,
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: #6F36BC;
+        width: 100%;
+        height: 4px;
+        transition: .4s;
+    }
+    &.active::after,
+    &.active::before {
+        background: #fff;
+    }
+    &::after {
+      top: 8px;
+    }
+    &::before {
+      top: -8px;
+    }
+  }
+
+  &__container {
+    position: fixed;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 0;
+    opacity: 1;
+    transition: .5s;
+    transition-delay: .2s;
+    overflow: hidden;
+    background-color: #2ACBA5;
+  }
+  
+  &__list {
+    transition: .5s;
+    transition-delay: .5s;
+    list-style: none;
+    padding-left: 0;
+    margin-top: -50px;
+  }
+
+  &__item {
+    font-size: 26px;
+    padding-bottom: 15px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #fff;
+  }
+ 
+  &__checkbox {
+      display: none;
+
+      &:checked ~ {
+          .mobile-menu {
+
+              &__nav {
+                opacity: 1;
+                transition-delay: 0s;
+              }
+
+              &__container {
+                height: 100%;
+                transition-delay: 0s;
+              }
+
+              &__btn {
+                .mobile-menu__icon {
+                    background: transparent;
+
+                    &::before,
+                    &::after {
+                        top: 0;
+                    }
+  
+                    &::after {
+                      transform: rotate(-45deg);
+                      -webkit-transform: rotate(-45deg);
+                    }
+  
+                    &::before {
+                      transform: rotate(45deg);
+                      -webkit-transform: rotate(45deg);
+                    }
+                }
+              }
+          }
+      }
+    }
+}
+
+.main-content {
+    background-color: $bgColor;
+    padding: 42px 0;
+}
+
+.grid-container {
+    margin-top: 36px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas:
+        "a b"
+        "c b";
+    align-content: end;
+    .img-wrap {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-area: a;
+        img {
+            width: 100%;
+        }
+    }
+    .donate-block {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-area: b;
+        margin-left: 30px;
+        .name-block {
+            display: flex;
+            max-width: 340px;
+            .name-block__left {
+                flex-basis: 65%;
+            }
+            .name-block__right {
+                flex-basis: 35%;
+                text-align: right;
+            }
+        }
+    }
+
+    .name-block__left .name {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    .name-block__left .adress {
+        color: $secondColor;
+        line-height: 1.4;
+    }
+
+    .name-block__right .date-title {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding-bottom: 9px;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+        padding-top: 5px;
+    }
+
+    .name-block__right .date {
+        font-size: 14px;
+        font-weight: 700;
+        display: block;
+        line-height: 1.4;
+    }
+
+    .name-block__right .days {
+        font-size: 12px;
+        display: block;
+        line-height: 1.4;
+    }
+
+    .cost-block {
+        margin-top: 50px;
+        .cost {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .donations {
+            display: block;
+            margin: 10px 0 10px;
+            font-size: 12px;
+            color: $secondColor;
+        }
+    }
+
+    .goal {
+        display: flex;
+        justify-content: space-between;
+        color: $secondColor;
+        .goal .goal-price {
+            display: block;
+            font-size: 12px;
+        }
+        .goal .days {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+
+    .tabs {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-area: c;
+    }
+}
+
+.tab-header {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+ }
+ 
+ .tab-header__item {
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-bottom: none;
+ }
+ 
+ .tab-header__item.active {
+    color: red;
+    position: relative;
+    top: 1px;
+    background-color: #fff;
+    border-color: red;
+   
+ }
+ 
+ .tab-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+ }
+ 
+ .tab-content__item {
+    display: none;
+    padding: 20px;
+    border: 1px solid red;
+ }
+ 
+ .tab-content__item.active {
+    display: block;
+ }
+ 
+ .skillbar {
+	position:relative;
+	display:block;
+	margin-bottom:15px;
+	width:100%;
+	background:#F0F0F0;
+	height:5px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-webkit-transition:0.4s linear;
+	-moz-transition:0.4s linear;
+	-ms-transition:0.4s linear;
+	-o-transition:0.4s linear;
+	transition:0.4s linear;
+	-webkit-transition-property:width, background-color;
+	-moz-transition-property:width, background-color;
+	-ms-transition-property:width, background-color;
+	-o-transition-property:width, background-color;
+	transition-property:width, background-color;
+}
+
+.skillbar-bar {
+	height:5px;
+	width:0px;
+	background:#2ACBA5;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
 }
